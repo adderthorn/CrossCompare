@@ -1,7 +1,7 @@
 object FormMain: TFormMain
-  Left = 440
+  Left = 377
   Height = 652
-  Top = 284
+  Top = 296
   Width = 771
   Caption = 'Cross Compare'
   ClientHeight = 632

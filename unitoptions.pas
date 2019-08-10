@@ -108,6 +108,7 @@ begin
   if FontDialogEditor.Execute then
   begin
     StaticTextSample.Font:=FontDialogEditor.Font;
+    AppOptions.EditorFont:=FontDialogEditor.Font;
   end;
 end;
 
@@ -117,7 +118,8 @@ var
 begin
   NewFont:=TFont.Create;
   StaticTextSample.Font:=NewFont;
-  FreeAndNil(NewFont)
+  AppOptions.EditorFont:=NewFont;
+  FreeAndNil(NewFont);
 end;
 
 constructor TFormOptions.Create(AnOwner: TComponent; AnAppOptions: TAppOptions);
