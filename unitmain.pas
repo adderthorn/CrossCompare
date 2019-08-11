@@ -42,8 +42,8 @@ type
     MenuItemFileSep2: TMenuItem;
     MenuItemViewReset: TMenuItem;
     MenuItemViewSep4: TMenuItem;
-    ToolButtonOptions: TToolButton;
     ToolButtonSep4: TToolButton;
+    ToolButtonOptions: TToolButton;
     ViewReset: TAction;
     FormatWordWrap: TAction;
     EditFindNext: TAction;
@@ -55,7 +55,6 @@ type
     MenuItemEditClear: TMenuItem;
     MenuItemPopupClear: TMenuItem;
     EditFind: TAction;
-    FindDialog1: TFindDialog;
     PropStorage: TIniPropStorage;
     MenuItemEditSep3: TMenuItem;
     MenuItemEditFind: TMenuItem;
@@ -151,7 +150,6 @@ type
     procedure EditClearUpdate(Sender: TObject);
     procedure EditCopyExecute(Sender: TObject);
     procedure EditCopyUpdate(Sender: TObject);
-    procedure EditFindExecute(Sender: TObject);
     procedure EditPasteExecute(Sender: TObject);
     procedure FileExitExecute(Sender: TObject);
     procedure FileNewExecute(Sender: TObject);
@@ -164,7 +162,6 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure HelpAboutExecute(Sender: TObject);
-    procedure MenuItem1Click(Sender: TObject);
     procedure PropStorageRestoreProperties(Sender: TObject);
     procedure MemoKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure MemoUpdate(Sender: TObject);
@@ -280,11 +277,6 @@ begin
     TAction(Sender).Enabled:=false;
 end;
 
-procedure TFormMain.EditFindExecute(Sender: TObject);
-begin
-  FindDialog1.Execute;
-end;
-
 procedure TFormMain.EditPasteExecute(Sender: TObject);
 var
   clipboardText, line: string;
@@ -393,11 +385,6 @@ var
 begin
   FrmAbt:=TFormAbout.Create(Self);
   FrmAbt.ShowModal;
-end;
-
-procedure TFormMain.MenuItem1Click(Sender: TObject);
-begin
-  ShowMessage(AppOptions.EditorFont.Name);
 end;
 
 procedure TFormMain.PropStorageRestoreProperties(Sender: TObject);

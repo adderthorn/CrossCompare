@@ -24,6 +24,40 @@ Some icons used in the application are curtesy of [FatCow](https://www.fatcow.co
 
 **NOTE:** Precompiled binaries are coming, for now you must compile from source. Don't worry, it's very easy!
 
+## Windows
+
+Tested on Windows 10, Windows 7, and Windows XP (32-bit).
+
+### 64-Bit
+
+Tested on Windows 10
+
+| Method |Hash                                                              |
+|--------|------------------------------------------------------------------|
+|SHA-1   |`7945779D7ACAC0F5E33C7F64AE0F500D3DEE733E`                        |
+|SHA-256 |`75E5B4E66F97A96454F890317A17CCF4CE08A96EDF2865B8AF13B51F7DDBF6D5`|
+
+**[Windows x64 Download - ZIP Folder Size: 1512134 bytes (1476 KiB)](https://www.noahw.org/Download/CrossCompare/x64)**
+
+### 32-Bit
+
+| Method |Hash                                                              |
+|--------|------------------------------------------------------------------|
+|SHA-1   |`BAC11FEC0AD0738207A856F495068B5FB95AEBD4`                        |
+|SHA-256 |`B75B1D7018935308BD214CC95C41F487B595B95958145888CE20FDEE8DC34A64`|
+
+**[Windows x86 Download - ZIP Folder Size: 1337040 bytes (1305 KiB)](https://www.noahw.org/Download/CrossCompare/x86)**
+
+## macOS
+
+> Binary Coming Soon!
+
+## Linux (Qt)
+
+**NOTE:** There is a known issue with the Linux build using Qt5. This bug will show that the application quit unexpectedly when trying to close the program (resulting in  a SIGSEGV). This bug does not cause any issues with the application and is an issue with Qt and Free Pascal.
+
+> Binary Coming Soon!
+
 # How to Build from Source
 
 You will need a copy of [Lazarus](https://www.lazarus-ide.org/). Simply download Lazarus and open the CrossCompare project file. From there you can build the application in Debug or Release modes. More detailed instructions coming soon!
