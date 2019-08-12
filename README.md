@@ -50,7 +50,14 @@ Tested on Windows 10
 
 ## macOS
 
-> Binary Coming Soon!
+Tested on macOS 10.13 (High Sierra). Intel x64 only.
+
+| Method |Hash                                                              |
+|--------|------------------------------------------------------------------|
+|SHA-1   |`8B3BE3BABBD48AB348E1BEB8A1D145FB2BC97EFE`                        |
+|SHA-256 |`7A666E6C6BBADE8C094AC3AA529D08A9EBB7F5A9A7E5A2BE8C0452543CA5E827`|
+
+**[macOS x64 Download - App/ZIP Size: 123028 bytes (120 KiB)](https://www.noahw.org/Download/CrossCompare/macos)**
 
 ## Linux (Qt)
 
