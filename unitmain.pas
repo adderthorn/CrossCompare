@@ -39,6 +39,7 @@ type
   { TFormMain }
 
   TFormMain = class(TForm)
+    MemoResults: TMemo;
     MenuItemFileSep2: TMenuItem;
     MenuItemViewReset: TMenuItem;
     MenuItemViewSep4: TMenuItem;
@@ -140,7 +141,6 @@ type
     Panel1: TPanel;
     Panel2: TPanel;
     StatusBar: TStatusBar;
-    SgResults: TStringGrid;
     ToolBar: TToolBar;
     ToolButtonUndo: TToolButton;
     ToolButtonCopy: TToolButton;
@@ -151,6 +151,7 @@ type
     procedure EditCopyExecute(Sender: TObject);
     procedure EditCopyUpdate(Sender: TObject);
     procedure EditPasteExecute(Sender: TObject);
+    procedure EditUndoUpdate(Sender: TObject);
     procedure FileExitExecute(Sender: TObject);
     procedure FileNewExecute(Sender: TObject);
     procedure FileSendToClipboardExecute(Sender: TObject);
@@ -230,21 +231,32 @@ begin
 end;
 
 procedure TFormMain.FileSendToClipboardExecute(Sender: TObject);
+//var
+//  Sl: TStringList;
+//  i: integer;
+//begin
+//  Sl:=TStringList.Create;
+//  for i:=0 to SgResults.RowCount - 1 do
+//  begin
+//    Sl.Add(SgResults.Cells[0,i]);
+//  end;
+//  Clipboard.AsText:=Sl.Text.Trim;
 var
+  s: string;
   Sl: TStringList;
-  i: integer;
 begin
   Sl:=TStringList.Create;
-  for i:=0 to SgResults.RowCount - 1 do
+  for s in MemoResults.Lines do
   begin
-    Sl.Add(SgResults.Cells[0,i]);
+    Sl.Add(s);
   end;
   Clipboard.AsText:=Sl.Text.Trim;
 end;
 
 procedure TFormMain.FileSendToClipboardUpdate(Sender: TObject);
 begin
-  TAction(Sender).Enabled:=(SgResults.RowCount > 0);
+  //TAction(Sender).Enabled:=(SgResults.RowCount > 0);
+  TAction(Sender).Enabled:=MemoResults.Lines.Count > 0;
 end;
 
 procedure TFormMain.FormatFontExecute(Sender: TObject);
@@ -254,7 +266,7 @@ begin
   begin
     MemoLeft.Font:=FontDialogEditors.Font;
     MemoRight.Font:=FontDialogEditors.Font;
-    SgResults.Font:=FontDialogEditors.Font;
+    MemoResults.Font:=FontDialogEditors.Font;
     AppOptions.EditorFont:=FontDialogEditors.Font;
   end;
 end;
@@ -307,6 +319,16 @@ begin
     NewString.LineBreak:=NEWLINE_CHAR;
     TCustomEdit(Self.ActiveControl).SelText:=NewString.Text.Trim;
     FreeAndNil(NewString);
+  end;
+end;
+
+procedure TFormMain.EditUndoUpdate(Sender: TObject);
+var
+  Ctrl: TCustomEdit;
+begin
+  if Self.ActiveControl is TCustomEdit then
+  begin
+    Ctrl:=TCustomEdit(Sender);
   end;
 end;
 
@@ -369,7 +391,7 @@ procedure TFormMain.FormDestroy(Sender: TObject);
 begin
   FreeAndNil(MemoLeft);
   FreeAndNil(MemoRight);
-  FreeAndNil(SgResults);
+  FreeAndNil(MemoResults);
 end;
 
 procedure TFormMain.FormResize(Sender: TObject);
@@ -392,7 +414,7 @@ begin
   AppOptions.TrimOption:=PropStorage.StoredValue[TRIM_OPTION].ToInteger;
   AppOptions.EditorFont:=MemoLeft.Font;
   MemoRight.Font:=MemoLeft.Font;
-  SgResults.Font:=MemoLeft.Font;
+  MemoResults.Font:=MemoLeft.Font;
   LeftRatio:=PropStorage.StoredValue[LEFT_RATIO].ToDouble;
   RightRatio:=PropStorage.StoredValue[RIGHT_RATIO].ToDouble;
   AppOptions.CaseSensitive:=PropStorage.StoredValue[CASE_SENSITIVE].ToInteger;
@@ -537,13 +559,12 @@ begin
       end;
     end;
   end;
-  SgResults.BeginUpdate;
-  SgResults.RowCount:=0;
+  MemoResults.Clear;
   for i:=0 to NewList.Count - 1 do
   begin
-    SgResults.InsertRowWithValues(i,[NewList[i]]);
+    //SgResults.InsertRowWithValues(i,[NewList[i]]);
+    MemoResults.Lines.Insert(i, NewList[i]);
   end;
-  SgResults.EndUpdate;
   UpdateStatusBar(LeftList.Count, RightList.Count, NewList.Count);
   FreeAndNil(NewList);
   FreeAndNil(LeftList);

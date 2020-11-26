@@ -1,11 +1,12 @@
 object FormMain: TFormMain
-  Left = 454
-  Height = 652
-  Top = 331
-  Width = 771
+  Left = 2215
+  Height = 1304
+  Top = 705
+  Width = 1542
   Caption = 'Cross Compare'
-  ClientHeight = 632
-  ClientWidth = 771
+  ClientHeight = 1265
+  ClientWidth = 1542
+  DesignTimePPI = 192
   Icon.Data = {
     1562020000000100060010100000010020006804000066000000202000000100
     2000A8100000CE04000040400000010020002842000076150000808000000100
@@ -4895,63 +4896,64 @@ object FormMain: TFormMain
   OnDestroy = FormDestroy
   OnResize = FormResize
   SessionProperties = 'Height;MemoLeft.Font;StatusBar.Visible;ToolBar.Visible;ViewDuplicates.Checked;ViewLeft.Checked;ViewRight.Checked;ViewShared.Checked;Width'
-  LCLVersion = '2.0.2.0'
+  LCLVersion = '2.0.10.0'
   object ToolBar: TToolBar
     Left = 0
-    Height = 26
+    Height = 50
     Top = 0
-    Width = 771
+    Width = 1542
     AutoSize = True
-    ButtonHeight = 24
-    ButtonWidth = 24
+    ButtonHeight = 48
+    ButtonWidth = 48
     Caption = 'ToolBar'
     Images = ImageListToolbar
+    ParentFont = False
     ParentShowHint = False
     ShowHint = True
     TabOrder = 0
     object ToolButtonCopy: TToolButton
-      Left = 78
+      Left = 155
       Top = 2
       Action = EditCopy
     end
     object ToolButtonPaste: TToolButton
-      Left = 102
+      Left = 203
       Top = 2
       Action = EditPaste
     end
     object ToolButtonCut: TToolButton
-      Left = 54
+      Left = 107
       Top = 2
       Action = EditCut
     end
     object ToolButtonUndo: TToolButton
-      Left = 131
+      Left = 261
       Top = 2
       Action = EditUndo
     end
     object ToolButtonSep3: TToolButton
-      Left = 155
-      Height = 24
+      Left = 309
+      Height = 48
       Top = 2
       Caption = 'ToolButtonSep3'
       Style = tbsDivider
     end
     object ToolButtonLeftUnique: TToolButton
-      Left = 160
+      Left = 319
       Top = 2
       Action = ViewLeft
       Grouped = True
       Style = tbsCheck
     end
     object ToolButtonRightUnique: TToolButton
-      Left = 184
+      Left = 367
       Top = 2
       Action = ViewRight
       Grouped = True
       Style = tbsCheck
     end
     object ToolButtonShared: TToolButton
-      Left = 208
+      Left = 415
       Top = 2
       Action = ViewShared
       Grouped = True
@@ -4963,32 +4965,32 @@ object FormMain: TFormMain
       Action = FileNew
     end
     object ToolButtonSep1: TToolButton
-      Left = 49
-      Height = 24
+      Left = 97
+      Height = 48
       Top = 2
       Caption = 'ToolButtonSep1'
       Style = tbsDivider
     end
     object ToolButtonSep2: TToolButton
-      Left = 126
-      Height = 24
+      Left = 251
+      Height = 48
       Top = 2
       Caption = 'ToolButtonSep2'
       Style = tbsDivider
     end
     object ToolButtonExport: TToolButton
-      Left = 25
+      Left = 49
       Top = 2
       Action = FileSendToClipboard
     end
     object ToolButtonOptions: TToolButton
-      Left = 237
+      Left = 473
       Top = 2
       Action = ToolsOptions
     end
     object ToolButtonSep4: TToolButton
-      Left = 232
-      Height = 24
+      Left = 463
+      Height = 48
       Top = 2
       Caption = 'ToolButtonSep4'
       Style = tbsDivider
@@ -4996,83 +4998,101 @@ object FormMain: TFormMain
   end
   object StatusBar: TStatusBar
     Left = 0
-    Height = 23
-    Top = 609
-    Width = 771
+    Height = 44
+    Top = 1221
+    Width = 1542
     AutoHint = True
     Panels = <    
       item
-        Width = 300
+        Width = 600
       end    
       item
         Text = 'Ln 1 Col 1'
-        Width = 100
+        Width = 200
       end    
       item
         Text = 'Left: 0'
-        Width = 70
+        Width = 140
       end    
       item
         Text = 'Right: 0'
-        Width = 70
+        Width = 140
       end    
       item
         Text = 'Results: 0'
-        Width = 70
+        Width = 140
       end>
+    ParentFont = False
     SimplePanel = False
   end
   object Panel1: TPanel
     Left = 0
-    Height = 583
-    Top = 26
-    Width = 771
+    Height = 1171
+    Top = 50
+    Width = 1542
     Align = alClient
     BevelOuter = bvNone
     Caption = 'Panel1'
-    ClientHeight = 583
-    ClientWidth = 771
+    ClientHeight = 1171
+    ClientWidth = 1542
+    ParentFont = False
     TabOrder = 2
     object MemoLeft: TMemo
       Left = 0
-      Height = 583
+      Height = 1171
       Top = 0
-      Width = 280
+      Width = 560
       Align = alLeft
       OnChange = RefreshGrid
       OnClick = MemoUpdate
       OnKeyUp = MemoKeyUp
+      ParentFont = False
       PopupMenu = PopupMenuMain
       ScrollBars = ssAutoBoth
       TabOrder = 0
       WordWrap = False
     end
     object MemoRight: TMemo
-      Left = 286
-      Height = 583
+      Left = 572
+      Height = 1171
       Top = 0
-      Width = 273
+      Width = 546
       Align = alClient
       OnChange = RefreshGrid
       OnClick = MemoUpdate
       OnKeyUp = MemoKeyUp
+      ParentFont = False
       PopupMenu = PopupMenuMain
       ScrollBars = ssAutoBoth
       TabOrder = 1
       WordWrap = False
     end
     object Panel2: TPanel
-      Left = 565
-      Height = 583
+      Left = 1130
+      Height = 1171
       Top = 0
-      Width = 206
+      Width = 412
       Align = alRight
       BevelOuter = bvNone
-      Caption = 'Panel2'
-      ClientHeight = 583
-      ClientWidth = 206
+      ClientHeight = 1171
+      ClientWidth = 412
+      ParentFont = False
       TabOrder = 2
-      object SgResults: TStringGrid
+      object GridLabel: TLabel
+        AnchorSideLeft.Control = Panel2
+        AnchorSideTop.Control = Panel2
+        AnchorSideRight.Control = Panel2
+        AnchorSideRight.Side = asrBottom
+        Left = 0
+        Height = 32
+        Top = 0
+        Width = 412
+        Anchors = [akTop, akLeft, akRight]
+        Caption = 'Show Shared'
+        ParentColor = False
+        ParentFont = False
+      end
+      object MemoResults: TMemo
         AnchorSideLeft.Control = Panel2
         AnchorSideTop.Control = GridLabel
         AnchorSideTop.Side = asrBottom
@@ -5081,53 +5101,34 @@ object FormMain: TFormMain
         AnchorSideBottom.Control = Panel2
         AnchorSideBottom.Side = asrBottom
         Left = 0
-        Height = 564
-        Top = 19
-        Width = 206
+        Height = 1139
+        Top = 32
+        Width = 412
         Anchors = [akTop, akLeft, akRight, akBottom]
-        AutoFillColumns = True
-        BorderSpacing.Top = 4
-        ColCount = 1
-        FixedCols = 0
-        FixedRows = 0
+        OnClick = MemoUpdate
+        OnKeyUp = MemoKeyUp
         PopupMenu = PopupMenuMain
-        RangeSelectMode = rsmMulti
-        RowCount = 0
+        ReadOnly = True
+        ScrollBars = ssAutoBoth
         TabOrder = 0
-        OnSelection = SgResultsAfterSelection
-        ColWidths = (
-          202
-        )
-      end
-      object GridLabel: TLabel
-        AnchorSideLeft.Control = Panel2
-        AnchorSideTop.Control = Panel2
-        AnchorSideRight.Control = Panel2
-        AnchorSideRight.Side = asrBottom
-        Left = 0
-        Height = 15
-        Top = 0
-        Width = 206
-        Anchors = [akTop, akLeft, akRight]
-        Caption = 'Show Shared'
-        ParentColor = False
+        WordWrap = False
       end
     end
     object SplitterLeft: TSplitter
-      Left = 280
-      Height = 583
+      Left = 560
+      Height = 1171
       Top = 0
-      Width = 6
+      Width = 12
       OnMoved = SplitterMoved
     end
     object SplitterRight: TSplitter
       AnchorSideLeft.Control = MemoRight
       AnchorSideLeft.Side = asrBottom
       AnchorSideRight.Control = Panel2
-      Left = 559
-      Height = 583
+      Left = 1118
+      Height = 1171
       Top = 0
-      Width = 6
+      Width = 12
       Align = alRight
       OnMoved = SplitterMoved
       ResizeAnchor = akRight
@@ -5135,8 +5136,8 @@ object FormMain: TFormMain
   end
   object ActionList: TActionList
     Images = ImageListToolbar
-    left = 353
-    top = 109
+    Left = 706
+    Top = 218
     object FileNew: TAction
       Category = 'File'
       Caption = '&New'
@@ -5179,6 +5180,7 @@ object FormMain: TFormMain
       Caption = '&Undo'
       Hint = 'Undo'
       ImageIndex = 4
+      OnUpdate = EditUndoUpdate
       ShortCut = 16474
     end
     object EditCut: TEditCut
@@ -5338,8 +5340,8 @@ object FormMain: TFormMain
   end
   object MainMenu: TMainMenu
     Images = ImageListToolbar
-    left = 288
-    top = 109
+    Left = 576
+    Top = 218
     object MenuItemFile: TMenuItem
       Caption = '&File'
       object MenuItemFileNew: TMenuItem
@@ -5486,8 +5488,8 @@ object FormMain: TFormMain
     end
   end
   object ImageListToolbar: TImageList
-    left = 432
-    top = 109
+    Left = 864
+    Top = 218
     Bitmap = {
       4C69130000001000000010000000FFFFFF00FFFFFF0000000000000000000000
       000000000000BAB8B6FC00000000000000000000000000000000000000000000
@@ -6729,8 +6731,8 @@ object FormMain: TFormMain
   end
   object PopupMenuMain: TPopupMenu
     Images = ImageListToolbar
-    left = 288
-    top = 160
+    Left = 576
+    Top = 320
     object MenuItemPopupUndo: TMenuItem
       Action = EditUndo
     end
@@ -6767,8 +6769,8 @@ object FormMain: TFormMain
     MaxFontSize = 0
     Options = [fdNoStyleSel]
     PreviewText = 'The quick brown fox jumped over the lazy dog.'
-    left = 353
-    top = 160
+    Left = 706
+    Top = 320
   end
   object PropStorage: TIniPropStorage
     StoredValues = <    
@@ -6790,7 +6792,7 @@ object FormMain: TFormMain
       end>
     OnSavingProperties = PropStorageSavingProperties
     OnRestoreProperties = PropStorageRestoreProperties
-    left = 432
-    top = 160
+    Left = 864
+    Top = 320
   end
 end
