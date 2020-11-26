@@ -1,7 +1,7 @@
 object FormMain: TFormMain
-  Left = 2215
+  Left = 663
   Height = 1304
-  Top = 705
+  Top = 554
   Width = 1542
   Caption = 'Cross Compare'
   ClientHeight = 1265
@@ -4912,48 +4912,48 @@ object FormMain: TFormMain
     ShowHint = True
     TabOrder = 0
     object ToolButtonCopy: TToolButton
-      Left = 155
+      Left = 150
       Top = 2
       Action = EditCopy
     end
     object ToolButtonPaste: TToolButton
-      Left = 203
+      Left = 198
       Top = 2
       Action = EditPaste
     end
     object ToolButtonCut: TToolButton
-      Left = 107
+      Left = 102
       Top = 2
       Action = EditCut
     end
     object ToolButtonUndo: TToolButton
-      Left = 261
+      Left = 251
       Top = 2
       Action = EditUndo
     end
     object ToolButtonSep3: TToolButton
-      Left = 309
+      Left = 299
       Height = 48
       Top = 2
       Caption = 'ToolButtonSep3'
       Style = tbsDivider
     end
     object ToolButtonLeftUnique: TToolButton
-      Left = 319
+      Left = 304
       Top = 2
       Action = ViewLeft
       Grouped = True
       Style = tbsCheck
     end
     object ToolButtonRightUnique: TToolButton
-      Left = 367
+      Left = 352
       Top = 2
       Action = ViewRight
       Grouped = True
       Style = tbsCheck
     end
     object ToolButtonShared: TToolButton
-      Left = 415
+      Left = 400
       Top = 2
       Action = ViewShared
       Grouped = True
@@ -4972,7 +4972,7 @@ object FormMain: TFormMain
       Style = tbsDivider
     end
     object ToolButtonSep2: TToolButton
-      Left = 251
+      Left = 246
       Height = 48
       Top = 2
       Caption = 'ToolButtonSep2'
@@ -4984,12 +4984,12 @@ object FormMain: TFormMain
       Action = FileSendToClipboard
     end
     object ToolButtonOptions: TToolButton
-      Left = 473
+      Left = 453
       Top = 2
       Action = ToolsOptions
     end
     object ToolButtonSep4: TToolButton
-      Left = 463
+      Left = 448
       Height = 48
       Top = 2
       Caption = 'ToolButtonSep4'
@@ -5144,14 +5144,12 @@ object FormMain: TFormMain
       Hint = 'Start a new workspace'
       ImageIndex = 9
       OnExecute = FileNewExecute
-      ShortCut = 16462
     end
     object FileSave: TAction
       Category = 'File'
       Caption = '&Save'
       Hint = 'Save the results to a text file.'
       ImageIndex = 10
-      ShortCut = 16467
     end
     object FileSaveAs: TAction
       Category = 'File'
@@ -5165,7 +5163,6 @@ object FormMain: TFormMain
       ImageIndex = 11
       OnExecute = FileSendToClipboardExecute
       OnUpdate = FileSendToClipboardUpdate
-      ShortCut = 24643
     end
     object FileExit: TAction
       Category = 'File'
@@ -5181,14 +5178,12 @@ object FormMain: TFormMain
       Hint = 'Undo'
       ImageIndex = 4
       OnUpdate = EditUndoUpdate
-      ShortCut = 16474
     end
     object EditCut: TEditCut
       Category = 'Edit'
       Caption = 'Cu&t'
       Hint = 'Cut'
       ImageIndex = 0
-      ShortCut = 16472
     end
     object EditCopy: TEditCopy
       Category = 'Edit'
@@ -5197,7 +5192,6 @@ object FormMain: TFormMain
       ImageIndex = 1
       OnExecute = EditCopyExecute
       OnUpdate = EditCopyUpdate
-      ShortCut = 16451
     end
     object EditPaste: TEditPaste
       Category = 'Edit'
@@ -5205,7 +5199,6 @@ object FormMain: TFormMain
       Hint = 'Paste'
       ImageIndex = 2
       OnExecute = EditPasteExecute
-      ShortCut = 16470
     end
     object ViewLeft: TAction
       Category = 'View'
@@ -5253,7 +5246,6 @@ object FormMain: TFormMain
       Caption = '&Find...'
       Hint = 'Find text in one or both editors and the results pane.'
       ImageIndex = 15
-      ShortCut = 16454
     end
     object ViewRefresh: TAction
       Category = 'View'
@@ -5261,7 +5253,6 @@ object FormMain: TFormMain
       Hint = 'Refresh the results list'
       ImageIndex = 8
       OnExecute = RefreshGrid
-      ShortCut = 116
     end
     object ViewDuplicates: TAction
       Category = 'View'
@@ -5270,7 +5261,6 @@ object FormMain: TFormMain
       Checked = True
       Hint = 'View/Hide duplicate values in the results list'
       OnExecute = ViewDuplicatesExecute
-      ShortCut = 16452
     end
     object ViewToolbar: TAction
       Category = 'View'
@@ -5292,19 +5282,16 @@ object FormMain: TFormMain
       Category = 'Edit'
       Caption = 'Find &Next'
       Hint = 'Go to next item.'
-      ShortCut = 114
     end
     object EditFindReplace: TAction
       Category = 'Edit'
       Caption = '&Replace...'
       Hint = 'Find/Replace text in one or both editors.'
-      ShortCut = 16456
     end
     object EditSelectAll: TEditSelectAll
       Category = 'Edit'
       Caption = 'Select &All'
       Hint = 'Select All'
-      ShortCut = 16449
     end
     object EditClear: TAction
       Category = 'Edit'
@@ -5313,7 +5300,6 @@ object FormMain: TFormMain
       ImageIndex = 17
       OnExecute = EditClearExecute
       OnUpdate = EditClearUpdate
-      ShortCut = 115
     end
     object FormatWordWrap: TAction
       Category = 'Format'
@@ -5335,7 +5321,6 @@ object FormMain: TFormMain
       Hint = 'Reset the view to equalize the panels in the window.'
       ImageIndex = 18
       OnExecute = ViewResetExecute
-      ShortCut = 24658
     end
   end
   object MainMenu: TMainMenu

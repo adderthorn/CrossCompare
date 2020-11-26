@@ -112,7 +112,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="4">
+    <Units Count="5">
       <Unit0>
         <Filename Value="CrossCompare.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -139,6 +139,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit3>
+      <Unit4>
+        <Filename Value="platformhelper.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="PlatformHelper"/>
+      </Unit4>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

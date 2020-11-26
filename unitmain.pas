@@ -30,7 +30,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ActnList, Menus, Grids,
   StdCtrls, ComCtrls, StdActns, ExtCtrls, Clipbrd, IniPropStorage,
-  IDEWindowIntf, UnitAbout, UnitOptions;
+  IDEWindowIntf, UnitAbout, UnitOptions, PlatformHelper;
 
 type
   { TViewMode }
@@ -326,10 +326,10 @@ procedure TFormMain.EditUndoUpdate(Sender: TObject);
 var
   Ctrl: TCustomEdit;
 begin
-  if Self.ActiveControl is TCustomEdit then
-  begin
-    Ctrl:=TCustomEdit(Sender);
-  end;
+  //if Self.ActiveControl is TCustomEdit then
+  //begin
+  //  Ctrl:=TCustomEdit(Sender);
+  //end;
 end;
 
 procedure TFormMain.EditCopyExecute(Sender: TObject);
@@ -381,6 +381,7 @@ end;
 
 procedure TFormMain.FormCreate(Sender: TObject);
 begin
+  AdaptMenus;
   ViewMode:=TShared;
   ViewShared.Checked:=true;
   WhitespaceChars[0]:=#13; //cr
