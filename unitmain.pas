@@ -30,7 +30,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ActnList, Menus, Grids,
   StdCtrls, ComCtrls, StdActns, ExtCtrls, Clipbrd, IniPropStorage,
-  IDEWindowIntf, UnitAbout, UnitOptions, PlatformHelper;
+  IDEWindowIntf, UnitAbout, UnitOptions, PlatformHelper, StrUtils;
 
 type
   { TViewMode }
@@ -39,6 +39,7 @@ type
   { TFormMain }
 
   TFormMain = class(TForm)
+    FindDialog: TFindDialog;
     MemoResults: TMemo;
     MenuItemFileSep2: TMenuItem;
     MenuItemViewReset: TMenuItem;
@@ -150,12 +151,15 @@ type
     procedure EditClearUpdate(Sender: TObject);
     procedure EditCopyExecute(Sender: TObject);
     procedure EditCopyUpdate(Sender: TObject);
+    procedure EditFindExecute(Sender: TObject);
+    procedure EditFindNextExecute(Sender: TObject);
     procedure EditPasteExecute(Sender: TObject);
     procedure EditUndoUpdate(Sender: TObject);
     procedure FileExitExecute(Sender: TObject);
     procedure FileNewExecute(Sender: TObject);
     procedure FileSendToClipboardExecute(Sender: TObject);
     procedure FileSendToClipboardUpdate(Sender: TObject);
+    procedure FindDialogFind(Sender: TObject);
     procedure FormatFontExecute(Sender: TObject);
     procedure FormatWordWrapExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -181,6 +185,7 @@ type
     ViewMode: TViewMode;
     AppOptions: TAppOptions;
     LeftRatio, RightRatio: double;
+    FFoundPos: integer;
     procedure Reset;
     procedure UpdateStatusBar(l, r, rs: integer);
   public
@@ -259,6 +264,25 @@ begin
   TAction(Sender).Enabled:=MemoResults.Lines.Count > 0;
 end;
 
+procedure TFormMain.FindDialogFind(Sender: TObject);
+var
+  Ctrl: TCustomEdit;
+begin
+  if not (Self.ActiveControl is TCustomEdit) then exit;
+  Ctrl:=TCustomEdit(Self.ActiveControl);
+  with Sender as TFindDialog do
+  begin
+    FFoundPos:=PosEx(FindText, Ctrl.Text, FFoundPos+1);
+    if FFoundPos > 0 then
+    begin
+      Ctrl.SelStart:=FFoundPos - 1;
+      Ctrl.SelLength:=FindText.Length;
+      Ctrl.SetFocus;
+    end else
+      Beep();
+  end;
+end;
+
 procedure TFormMain.FormatFontExecute(Sender: TObject);
 begin
   FontDialogEditors.Font:=MemoLeft.Font;
@@ -287,6 +311,21 @@ begin
     TAction(Sender).Enabled:=true
   else
     TAction(Sender).Enabled:=false;
+end;
+
+procedure TFormMain.EditFindExecute(Sender: TObject);
+begin
+  FFoundPos:=0;
+  FindDialog.Execute;
+end;
+
+procedure TFormMain.EditFindNextExecute(Sender: TObject);
+var
+  Ctrl: TCustomEdit;
+begin
+  if not (Self.ActiveControl is TCustomEdit) then exit;
+  Ctrl:=TCustomEdit(Self.ActiveControl);
+  FFoundPos:=Ctrl.SelStart;
 end;
 
 procedure TFormMain.EditPasteExecute(Sender: TObject);

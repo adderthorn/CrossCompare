@@ -1,7 +1,7 @@
 object FormMain: TFormMain
-  Left = 663
+  Left = 830
   Height = 1304
-  Top = 554
+  Top = 309
   Width = 1542
   Caption = 'Cross Compare'
   ClientHeight = 1265
@@ -4895,6 +4895,7 @@ object FormMain: TFormMain
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnResize = FormResize
+  Position = poDefault
   SessionProperties = 'Height;MemoLeft.Font;StatusBar.Visible;ToolBar.Visible;ViewDuplicates.Checked;ViewLeft.Checked;ViewRight.Checked;ViewShared.Checked;Width'
   LCLVersion = '2.0.10.0'
   object ToolBar: TToolBar
@@ -5246,6 +5247,7 @@ object FormMain: TFormMain
       Caption = '&Find...'
       Hint = 'Find text in one or both editors and the results pane.'
       ImageIndex = 15
+      OnExecute = EditFindExecute
     end
     object ViewRefresh: TAction
       Category = 'View'
@@ -5282,6 +5284,7 @@ object FormMain: TFormMain
       Category = 'Edit'
       Caption = 'Find &Next'
       Hint = 'Go to next item.'
+      OnExecute = EditFindNextExecute
     end
     object EditFindReplace: TAction
       Category = 'Edit'
@@ -5375,6 +5378,7 @@ object FormMain: TFormMain
       end
       object MenuItemEditSep3: TMenuItem
         Caption = '-'
+        Visible = False
       end
       object MenuItemEditFind: TMenuItem
         Action = EditFind
@@ -5383,15 +5387,16 @@ object FormMain: TFormMain
       end
       object MenuItemEditFindNext: TMenuItem
         Action = EditFindNext
+        Enabled = False
         Visible = False
       end
       object MenuItemEditFindReplace: TMenuItem
         Action = EditFindReplace
+        Enabled = False
         Visible = False
       end
       object MenuItemEditSep2: TMenuItem
         Caption = '-'
-        Visible = False
       end
       object MenuItemEditSelectAll: TMenuItem
         Action = EditSelectAll
@@ -6779,5 +6784,11 @@ object FormMain: TFormMain
     OnRestoreProperties = PropStorageRestoreProperties
     Left = 864
     Top = 320
+  end
+  object FindDialog: TFindDialog
+    Options = [frDown, frFindNext]
+    OnFind = FindDialogFind
+    Left = 432
+    Top = 218
   end
 end

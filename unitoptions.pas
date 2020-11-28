@@ -46,7 +46,7 @@ type
     ApplicationProperties1: TApplicationProperties;
     BitBtnFontEdit: TBitBtn;
     ButtonResetFont: TButton;
-    ButtonPanel1: TButtonPanel;
+    ButtonPanelOptions: TButtonPanel;
     DividerBevelUser: TDividerBevel;
     DividerBevelBehavior: TDividerBevel;
     FontDialogEditor: TFontDialog;
