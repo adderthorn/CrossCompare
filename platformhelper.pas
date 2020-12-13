@@ -16,6 +16,12 @@ uses
 
 procedure AdaptMenus;
 begin
+  { Application Menu }
+  {$IFDEF Darwin}
+  FormMain.MenuItemApple.Enabled:=True;
+  FormMain.MenuItemApple.Visible:=True;
+  {$ENDIF}
+
   { File Menu }
   FormMain.FileNew.ShortCut:=ShortCut(VK_N, [ssModifier]);
   FormMain.FileSave.ShortCut:=Shortcut(VK_S, [ssModifier]);
@@ -34,9 +40,9 @@ begin
   FormMain.EditFind.ShortCut:=ShortCut(VK_F, [ssModifier]);
   FormMain.EditSelectAll.ShortCut:=ShortCut(VK_A, [ssModifier]);
   {$IFDEF Darwin}
-  FormMain.EditFindNext.ShortCut:=(VK_G, [ssMeta]);
-  FormMain.EditFindReplace.ShortCut:=(VK_F, [ssMeta, ssAlt]);
-  FormMain.EditClear.ShortCut:=ShortCut(VK_BACKSPACE, [ssMeta]);
+  FormMain.EditFindNext.ShortCut:=ShortCut(VK_G, [ssMeta]);
+  FormMain.EditFindReplace.ShortCut:=ShortCut(VK_F, [ssMeta, ssAlt]);
+  FormMain.EditClear.ShortCut:=ShortCut(VK_BACK, [ssMeta]);
   {$ELSE}
   FormMain.EditFindNext.ShortCut:=ShortCut(VK_F3, []);
   FormMain.EditFindReplace.ShortCut:=ShortCut(VK_H, [ssCtrl]);
@@ -60,8 +66,8 @@ begin
 
   { Help Menu }
   {$IFDEF Darwin}
-  FormMain.HelpAbout.Enabled:=False;
-  FormMain.HelpAbout.Visible:=False;
+  FormMain.MenuItemHelpAbout.Enabled:=False;
+  FormMain.MenuItemHelpAbout.Visible:=False;
   {$ENDIF}
 
 end;

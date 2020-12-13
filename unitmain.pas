@@ -29,7 +29,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ActnList, Menus, Grids,
-  StdCtrls, ComCtrls, StdActns, ExtCtrls, Clipbrd, IniPropStorage,
+  StdCtrls, ComCtrls, StdActns, ExtCtrls, Clipbrd, IniPropStorage, lclintf,
   IDEWindowIntf, UnitAbout, UnitOptions, PlatformHelper, StrUtils;
 
 type
@@ -39,8 +39,14 @@ type
   { TFormMain }
 
   TFormMain = class(TForm)
+    HelpGithub: TAction;
     FindDialog: TFindDialog;
     MemoResults: TMemo;
+    MenuItemHelpGithub: TMenuItem;
+    MenuItemApplePrefs: TMenuItem;
+    MenuItemAppleSep1: TMenuItem;
+    MenuItemApple: TMenuItem;
+    MenuItemAppleAbout: TMenuItem;
     MenuItemFileSep2: TMenuItem;
     MenuItemViewReset: TMenuItem;
     MenuItemViewSep4: TMenuItem;
@@ -167,6 +173,7 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure HelpAboutExecute(Sender: TObject);
+    procedure HelpGithubExecute(Sender: TObject);
     procedure PropStorageRestoreProperties(Sender: TObject);
     procedure MemoKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure MemoUpdate(Sender: TObject);
@@ -447,6 +454,11 @@ var
 begin
   FrmAbt:=TFormAbout.Create(Self);
   FrmAbt.ShowModal;
+end;
+
+procedure TFormMain.HelpGithubExecute(Sender: TObject);
+begin
+  OpenUrl('https://github.com/adderthorn/CrossCompare');
 end;
 
 procedure TFormMain.PropStorageRestoreProperties(Sender: TObject);

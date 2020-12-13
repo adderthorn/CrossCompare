@@ -1,7 +1,7 @@
 object FormAbout: TFormAbout
-  Left = 593
+  Left = 1285
   Height = 331
-  Top = 312
+  Top = 76
   Width = 338
   BorderIcons = [biMaximize]
   BorderStyle = bsDialog
@@ -4893,7 +4893,7 @@ object FormAbout: TFormAbout
   }
   Position = poOwnerFormCenter
   ShowInTaskBar = stNever
-  LCLVersion = '2.0.2.0'
+  LCLVersion = '2.1.0.0'
   object Panel1: TPanel
     AnchorSideLeft.Control = Owner
     AnchorSideTop.Control = Owner
@@ -4917,9 +4917,9 @@ object FormAbout: TFormAbout
       AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = Panel1
       Left = 79
-      Height = 15
+      Height = 16
       Top = 10
-      Width = 81
+      Width = 93
       Caption = 'Cross Compare'
       ParentColor = False
     end
@@ -5188,11 +5188,11 @@ object FormAbout: TFormAbout
       AnchorSideBottom.Control = Panel1
       AnchorSideBottom.Side = asrCenter
       Left = 79
-      Height = 15
+      Height = 16
       Top = 32
-      Width = 59
+      Width = 67
       Anchors = [akLeft, akBottom]
-      Caption = 'Version: 1.0'
+      Caption = 'Version: 1.1'
       ParentColor = False
     end
     object Label3: TLabel
@@ -5201,9 +5201,9 @@ object FormAbout: TFormAbout
       AnchorSideBottom.Control = Panel1
       AnchorSideBottom.Side = asrBottom
       Left = 79
-      Height = 15
-      Top = 55
-      Width = 64
+      Height = 16
+      Top = 54
+      Width = 70
       Anchors = [akLeft, akBottom]
       Caption = 'Noah Wood'
       ParentColor = False
@@ -5214,10 +5214,10 @@ object FormAbout: TFormAbout
       AnchorSideBottom.Control = Panel1
       AnchorSideBottom.Side = asrBottom
       Cursor = crHandPoint
-      Left = 241
-      Height = 15
-      Top = 55
-      Width = 87
+      Left = 233
+      Height = 16
+      Top = 54
+      Width = 95
       Anchors = [akRight, akBottom]
       Caption = 'www.noahw.org'
       Font.Color = clHotLight
@@ -5255,8 +5255,6 @@ object FormAbout: TFormAbout
       Align = alClient
       Lines.Strings = (
         '© Copyright 2019 Noah Wood'
-        ''
-        'Some icons used courtesy of fatcowhosting.com'
         ''
         '                    GNU GENERAL PUBLIC LICENSE'
         '                       Version 3, 29 June 2007'
@@ -5929,56 +5927,20 @@ object FormAbout: TFormAbout
     ClientHeight = 42
     ClientWidth = 338
     TabOrder = 2
-    object BtnOK: TBitBtn
+    object BtnOK: TButton
       AnchorSideTop.Control = PanelBottom
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = PanelBottom
       AnchorSideRight.Side = asrBottom
-      Left = 266
-      Height = 26
-      Top = 8
-      Width = 62
+      Left = 288
+      Height = 20
+      Top = 11
+      Width = 40
       Anchors = [akTop, akRight]
       AutoSize = True
       Cancel = True
       Caption = '&OK'
       Default = True
-      Glyph.Data = {
-        36040000424D3604000000000000360000002800000010000000100000000100
-        2000000000000004000064000000640000000000000000000000FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000000000
-        0000000000000000000000000000000000330000003300000000000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        0000000000000000000000000033008949FF008949FF00000033000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        00000000000000000033008645FF0BE9ABFF0BE9ABFF008645FF000000330000
-        0000000000000000000000000000000000000000000000000000000000000000
-        000000000033008644FF0BE7A9FF00D89DFF00D89DFF0BE7A9FF008644FF0000
-        0033000000000000000000000000000000000000000000000000000000000000
-        0033008644FF1DE9B0FF00D39DFF00D19AFF00D19AFF00D39DFF1DE9B0FF0086
-        44FF000000330000000000000000000000000000000000000000000000330086
-        44FF2DEBB9FF00CF9CFF00CD9AFF00CC99FF00CC99FF00CD9AFF00CF9CFF2DEB
-        B9FF008643FF0000003300000000000000000000000000000000008948FF3CEF
-        C4FF00C99BFF00C899FF00C99AFF3CE9BDFF3CE9BDFF00C99AFF00C89AFF00CA
-        9BFF3EEEC2FF008643FF00000033000000000000000000000000008947FF4EF0
-        CDFF00C69BFF00C59BFF4FEFCAFF008340FF008340FF4FEFCAFF00C69BFF00C5
-        9AFF00C69CFF4FF0CBFF008642FF000000330000000000000000000000000086
-        42FF5EF2D4FF5FF2D4FF008642FF0000000000000000008542FF60F1D2FF00C1
-        9BFF00C09AFF00C29BFF60F2D2FF008642FF0000003300000000000000000000
-        0000008947FF008947FF00000000000000000000000000000000008642FF72F3
-        DBFF00BC9AFF00BC99FF00BD9BFF5FF2D2FF008642FF00000033000000000000
-        0000000000000000000000000000000000000000000000000000000000000086
-        41FF83F4E4FF00B89BFF00B79AFF00B79BFF6FF4DCFF008946FF000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        0000008641FF83F4E4FF00B29AFF00B29AFF81F5E5FF008946FF000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        000000000000008641FF91F8EEFF91F8EEFF008641FF00000000000000000000
-        0000000000000000000000000000000000000000000000000000000000000000
-        00000000000000000000008946FF008946FF0000000000000000FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
-        FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00
-      }
       OnClick = BtnOKClick
       TabOrder = 0
     end
