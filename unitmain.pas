@@ -78,7 +78,6 @@ type
     MenuItemViewStatusBar: TMenuItem;
     MenuItemViewToolbar: TMenuItem;
     MenuItemViewSep3: TMenuItem;
-    ToolButtonExport: TToolButton;
     ToolButtonNew: TToolButton;
     ToolButtonSep1: TToolButton;
     ToolButtonSep2: TToolButton;
@@ -155,8 +154,6 @@ type
     ToolButtonCut: TToolButton;
     procedure EditClearExecute(Sender: TObject);
     procedure EditClearUpdate(Sender: TObject);
-    procedure EditCopyExecute(Sender: TObject);
-    procedure EditCopyUpdate(Sender: TObject);
     procedure EditFindExecute(Sender: TObject);
     procedure EditFindNextExecute(Sender: TObject);
     procedure EditPasteExecute(Sender: TObject);
@@ -308,18 +305,6 @@ begin
   MemoRight.WordWrap:=MemoLeft.WordWrap;
 end;
 
-procedure TFormMain.EditCopyUpdate(Sender: TObject);
-begin
-  if (Self.ActiveControl is TStringGrid) and
-     (TStringGrid(Self.ActiveControl).SelectedRangeCount > 0) then
-    TAction(Sender).Enabled:=true
-  else if (Self.ActiveControl is TCustomEdit) and
-     (TCustomEdit(Self.ActiveControl).SelLength > 0) then
-    TAction(Sender).Enabled:=true
-  else
-    TAction(Sender).Enabled:=false;
-end;
-
 procedure TFormMain.EditFindExecute(Sender: TObject);
 begin
   FFoundPos:=0;
@@ -376,37 +361,6 @@ begin
   //begin
   //  Ctrl:=TCustomEdit(Sender);
   //end;
-end;
-
-procedure TFormMain.EditCopyExecute(Sender: TObject);
-var
-  Sg: TStringGrid;
-  Sl: TStringList;
-  i: integer;
-begin
-  if Self.ActiveControl is TStringGrid then
-  begin
-    Sg:=TStringGrid(Self.ActiveControl);
-    Sl:=TStringList.Create;
-    for i:=0 to Sg.RowCount - 1 do
-    begin
-      if Sg.IsCellSelected[0,i] then Sl.Add(Sg.Cells[0,i]);
-    end;
-    case AppOptions.LineEnding of
-      0:
-      Sl.TextLineBreakStyle:=NEWLINE;
-      1:
-      Sl.TextLineBreakStyle:=tlbsCRLF;
-      2:
-      Sl.TextLineBreakStyle:=tlbsLF;
-      3:
-      Sl.TextLineBreakStyle:=tlbsCR;
-    end;
-    Clipboard.AsText:=Sl.Text.Trim;
-  end else if Self.ActiveControl is TCustomEdit then
-  begin
-    TCustomEdit(Self.ActiveControl).CopyToClipboard;
-  end;
 end;
 
 procedure TFormMain.EditClearUpdate(Sender: TObject);

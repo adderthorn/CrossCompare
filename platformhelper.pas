@@ -37,6 +37,7 @@ begin
   FormMain.EditCut.ShortCut:=ShortCut(VK_X, [ssModifier]);
   FormMain.EditCopy.ShortCut:=ShortCut(VK_C, [ssModifier]);
   FormMain.EditCut.ShortCut:=ShortCut(VK_X, [ssModifier]);
+  FormMain.EditPaste.ShortCut:=ShortCut(VK_V, [ssModifier]);
   FormMain.EditFind.ShortCut:=ShortCut(VK_F, [ssModifier]);
   FormMain.EditSelectAll.ShortCut:=ShortCut(VK_A, [ssModifier]);
   {$IFDEF Darwin}
