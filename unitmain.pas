@@ -28,7 +28,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ActnList, Menus, Grids,
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ActnList, Menus,
   StdCtrls, ComCtrls, StdActns, ExtCtrls, Clipbrd, IniPropStorage, lclintf,
   IDEWindowIntf, UnitAbout, UnitOptions, PlatformHelper, StrUtils;
 
@@ -89,12 +89,9 @@ type
     MenuItemViewDuplicates: TMenuItem;
     MenuItemViewSep2: TMenuItem;
     ViewDuplicates: TAction;
-    FileSendToClipboard: TAction;
     FileSaveAs: TAction;
     FileSave: TAction;
     FileNew: TAction;
-    MenuItemPopupSendToClipboard: TMenuItem;
-    MenuItemPopupSep3: TMenuItem;
     MenuItemPopupSelectAll: TMenuItem;
     MenuItemPopupSep2: TMenuItem;
     MenuItemPopupPaste: TMenuItem;
@@ -102,7 +99,6 @@ type
     MenuItemPopupCut: TMenuItem;
     MenuItemPopupSep1: TMenuItem;
     MenuItemPopupUndo: TMenuItem;
-    MenuItemFileSendToClipboard: TMenuItem;
     MenuItemFileSaveAs: TMenuItem;
     MenuItemFileSave: TMenuItem;
     MenuItemFileNew: TMenuItem;
@@ -160,8 +156,6 @@ type
     procedure EditUndoUpdate(Sender: TObject);
     procedure FileExitExecute(Sender: TObject);
     procedure FileNewExecute(Sender: TObject);
-    procedure FileSendToClipboardExecute(Sender: TObject);
-    procedure FileSendToClipboardUpdate(Sender: TObject);
     procedure FindDialogFind(Sender: TObject);
     procedure FormatFontExecute(Sender: TObject);
     procedure FormatWordWrapExecute(Sender: TObject);
@@ -235,37 +229,11 @@ begin
 end;
 
 procedure TFormMain.FileNewExecute(Sender: TObject);
-begin
-  Reset;
-end;
-
-procedure TFormMain.FileSendToClipboardExecute(Sender: TObject);
-//var
-//  Sl: TStringList;
-//  i: integer;
-//begin
-//  Sl:=TStringList.Create;
-//  for i:=0 to SgResults.RowCount - 1 do
-//  begin
-//    Sl.Add(SgResults.Cells[0,i]);
-//  end;
-//  Clipboard.AsText:=Sl.Text.Trim;
 var
-  s: string;
-  Sl: TStringList;
+  NewForm: TFormMain;
 begin
-  Sl:=TStringList.Create;
-  for s in MemoResults.Lines do
-  begin
-    Sl.Add(s);
-  end;
-  Clipboard.AsText:=Sl.Text.Trim;
-end;
-
-procedure TFormMain.FileSendToClipboardUpdate(Sender: TObject);
-begin
-  //TAction(Sender).Enabled:=(SgResults.RowCount > 0);
-  TAction(Sender).Enabled:=MemoResults.Lines.Count > 0;
+  NewForm:=TFormMain.Create(Self.Owner);
+  NewForm.Show;
 end;
 
 procedure TFormMain.FindDialogFind(Sender: TObject);

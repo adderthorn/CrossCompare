@@ -25,11 +25,13 @@ begin
   { File Menu }
   FormMain.FileNew.ShortCut:=ShortCut(VK_N, [ssModifier]);
   FormMain.FileSave.ShortCut:=Shortcut(VK_S, [ssModifier]);
-  FormMain.FileSendToClipboard.ShortCut:=ShortCut(VK_S, [ssModifier, ssShift]);
   {$IFDEF Darwin}
-  FormMain.FileExit.Visible:=False;
-  FormMain.FileExit.Enabled:=False;
-  FormMain.MenuItemFileSep1.Visible:=False;
+  //FormMain.FileExit.Visible:=False;
+  //FormMain.FileExit.Enabled:=False;
+  //FormMain.MenuItemFileSep1.Visible:=False;
+  FormMain.FileExit.Caption:='Close';
+  FormMain.FileExit.ShortCut:=ShortCut(VK_W, [ssModifier]);
+  FormMain.FileExit.SecondaryShortCuts.Clear;
   {$ENDIF}
 
   { Edit Menu }
