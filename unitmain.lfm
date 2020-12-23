@@ -1,10 +1,10 @@
 object FormMain: TFormMain
-  Left = 1315
+  Left = 816
   Height = 607
   Top = 104
   Width = 864
   Caption = 'Cross Compare'
-  ClientHeight = 587
+  ClientHeight = 607
   ClientWidth = 864
   Icon.Data = {
     1562020000000100060010100000010020006804000066000000202000000100
@@ -4994,8 +4994,8 @@ object FormMain: TFormMain
   end
   object StatusBar: TStatusBar
     Left = 0
-    Height = 23
-    Top = 564
+    Height = 18
+    Top = 589
     Width = 864
     AutoHint = True
     Panels = <    
@@ -5023,19 +5023,19 @@ object FormMain: TFormMain
   end
   object Panel1: TPanel
     Left = 0
-    Height = 530
+    Height = 555
     Top = 34
     Width = 864
     Align = alClient
     BevelOuter = bvNone
     Caption = 'Panel1'
-    ClientHeight = 530
+    ClientHeight = 555
     ClientWidth = 864
     ParentFont = False
     TabOrder = 2
     object MemoLeft: TMemo
       Left = 0
-      Height = 530
+      Height = 555
       Top = 0
       Width = 280
       Align = alLeft
@@ -5050,7 +5050,7 @@ object FormMain: TFormMain
     end
     object MemoRight: TMemo
       Left = 286
-      Height = 530
+      Height = 555
       Top = 0
       Width = 366
       Align = alClient
@@ -5065,12 +5065,12 @@ object FormMain: TFormMain
     end
     object Panel2: TPanel
       Left = 658
-      Height = 530
+      Height = 555
       Top = 0
       Width = 206
       Align = alRight
       BevelOuter = bvNone
-      ClientHeight = 530
+      ClientHeight = 555
       ClientWidth = 206
       ParentFont = False
       TabOrder = 2
@@ -5080,7 +5080,7 @@ object FormMain: TFormMain
         AnchorSideRight.Control = Panel2
         AnchorSideRight.Side = asrBottom
         Left = 0
-        Height = 15
+        Height = 16
         Top = 0
         Width = 206
         Anchors = [akTop, akLeft, akRight]
@@ -5097,8 +5097,8 @@ object FormMain: TFormMain
         AnchorSideBottom.Control = Panel2
         AnchorSideBottom.Side = asrBottom
         Left = 0
-        Height = 515
-        Top = 15
+        Height = 539
+        Top = 16
         Width = 206
         Anchors = [akTop, akLeft, akRight, akBottom]
         OnClick = MemoUpdate
@@ -5113,7 +5113,7 @@ object FormMain: TFormMain
     end
     object SplitterLeft: TSplitter
       Left = 280
-      Height = 530
+      Height = 555
       Top = 0
       Width = 6
       OnMoved = SplitterMoved
@@ -5123,7 +5123,7 @@ object FormMain: TFormMain
       AnchorSideLeft.Side = asrBottom
       AnchorSideRight.Control = Panel2
       Left = 652
-      Height = 530
+      Height = 555
       Top = 0
       Width = 6
       Align = alRight

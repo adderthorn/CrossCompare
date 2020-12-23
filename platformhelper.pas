@@ -30,8 +30,8 @@ begin
   //FormMain.FileExit.Enabled:=False;
   //FormMain.MenuItemFileSep1.Visible:=False;
   FormMain.FileExit.Caption:='Close';
-  FormMain.FileExit.ShortCut:=ShortCut(VK_W, [ssModifier]);
   FormMain.FileExit.SecondaryShortCuts.Clear;
+  FormMain.FileExit.ShortCut:=ShortCut(VK_W, [ssModifier]);
   {$ENDIF}
 
   { Edit Menu }

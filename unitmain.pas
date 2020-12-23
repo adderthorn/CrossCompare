@@ -225,14 +225,14 @@ implementation
 
 procedure TFormMain.FileExitExecute(Sender: TObject);
 begin
-  Self.Close;
+  //Self.Close;
 end;
 
 procedure TFormMain.FileNewExecute(Sender: TObject);
 var
   NewForm: TFormMain;
 begin
-  NewForm:=TFormMain.Create(Self.Owner);
+  NewForm:=TFormMain.Create(Application);
   NewForm.Show;
 end;
 
