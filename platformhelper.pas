@@ -8,11 +8,19 @@ uses
   Classes, SysUtils, LCLType, Controls, Menus;
 
 procedure AdaptMenus;
+procedure AdaptFeatures;
 
 implementation
 
 uses
   UnitMain;
+
+procedure AdaptFeatures;
+begin
+  {$IFDEF LCLCocoa}
+  CocoaInt.CocoaIconUse=false;
+  {$ENDIF}
+end;
 
 procedure AdaptMenus;
 begin
@@ -23,15 +31,11 @@ begin
   {$ENDIF}
 
   { File Menu }
-  FormMain.FileNew.ShortCut:=ShortCut(VK_N, [ssModifier]);
-  FormMain.FileSave.ShortCut:=Shortcut(VK_S, [ssModifier]);
+  FormMain.FileNew.ShortCut:=ShortCut(VK_N, [ssModifier, ssShift]);
   {$IFDEF Darwin}
-  //FormMain.FileExit.Visible:=False;
-  //FormMain.FileExit.Enabled:=False;
-  //FormMain.MenuItemFileSep1.Visible:=False;
-  FormMain.FileExit.Caption:='Close';
-  FormMain.FileExit.SecondaryShortCuts.Clear;
-  FormMain.FileExit.ShortCut:=ShortCut(VK_W, [ssModifier]);
+  FormMain.FileExit.Enabled:=false;
+  FormMain.FileExit.Visible:=false;
+  FormMain.MenuItemFileSep1.Visible:=false;
   {$ENDIF}
 
   { Edit Menu }

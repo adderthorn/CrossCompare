@@ -30,7 +30,8 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ActnList, Menus,
   StdCtrls, ComCtrls, StdActns, ExtCtrls, Clipbrd, IniPropStorage, lclintf,
-  IDEWindowIntf, UnitAbout, UnitOptions, PlatformHelper, StrUtils;
+  IDEWindowIntf, UnitAbout, UnitOptions, PlatformHelper, StrUtils
+  {$IFDEF LCLCocoa}, CocoaInt{$ENDIF};
 
 type
   { TViewMode }
@@ -39,6 +40,7 @@ type
   { TFormMain }
 
   TFormMain = class(TForm)
+    FileExit: TFileExit;
     HelpGithub: TAction;
     FindDialog: TFindDialog;
     MemoResults: TMemo;
@@ -47,9 +49,10 @@ type
     MenuItemAppleSep1: TMenuItem;
     MenuItemApple: TMenuItem;
     MenuItemAppleAbout: TMenuItem;
-    MenuItemFileSep2: TMenuItem;
     MenuItemViewReset: TMenuItem;
     MenuItemViewSep4: TMenuItem;
+    ToolButtonNew: TToolButton;
+    ToolButtonSep1: TToolButton;
     ToolButtonSep4: TToolButton;
     ToolButtonOptions: TToolButton;
     ViewReset: TAction;
@@ -78,8 +81,6 @@ type
     MenuItemViewStatusBar: TMenuItem;
     MenuItemViewToolbar: TMenuItem;
     MenuItemViewSep3: TMenuItem;
-    ToolButtonNew: TToolButton;
-    ToolButtonSep1: TToolButton;
     ToolButtonSep2: TToolButton;
     ViewStatusBar: TAction;
     ViewToolbar: TAction;
@@ -89,8 +90,6 @@ type
     MenuItemViewDuplicates: TMenuItem;
     MenuItemViewSep2: TMenuItem;
     ViewDuplicates: TAction;
-    FileSaveAs: TAction;
-    FileSave: TAction;
     FileNew: TAction;
     MenuItemPopupSelectAll: TMenuItem;
     MenuItemPopupSep2: TMenuItem;
@@ -99,8 +98,6 @@ type
     MenuItemPopupCut: TMenuItem;
     MenuItemPopupSep1: TMenuItem;
     MenuItemPopupUndo: TMenuItem;
-    MenuItemFileSaveAs: TMenuItem;
-    MenuItemFileSave: TMenuItem;
     MenuItemFileNew: TMenuItem;
     MenuItemFileSep1: TMenuItem;
     MenuItemViewRefresh: TMenuItem;
@@ -123,7 +120,6 @@ type
     EditPaste: TEditPaste;
     EditSelectAll: TEditSelectAll;
     EditUndo: TEditUndo;
-    FileExit: TAction;
     ActionList: TActionList;
     ImageListToolbar: TImageList;
     GridLabel: TLabel;
@@ -166,10 +162,10 @@ type
     procedure HelpAboutExecute(Sender: TObject);
     procedure HelpGithubExecute(Sender: TObject);
     procedure PropStorageRestoreProperties(Sender: TObject);
-    procedure MemoKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure MemoKeyUp(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure MemoUpdate(Sender: TObject);
     procedure PropStorageSavingProperties(Sender: TObject);
-    procedure SgResultsAfterSelection(Sender: TObject; aCol, aRow: Integer);
+    procedure SgResultsAfterSelection(Sender: TObject; aCol, aRow: integer);
     procedure SplitterMoved(Sender: TObject);
     procedure ToolsOptionsExecute(Sender: TObject);
     procedure ViewDuplicatesExecute(Sender: TObject);
@@ -190,27 +186,28 @@ type
 
   const
     LEFT_VIEW = 'Left Unique';
-    RIGHT_VIEW ='Right Unique';
-    SHARED_VIEW='Shared Items';
+    RIGHT_VIEW = 'Right Unique';
+    SHARED_VIEW = 'Shared Items';
     HALF_SPLITTER_WIDTH = 3;
 
 {$IFDEF WINDOWS}
-    NEWLINE=tlbsCRLF;
+    NEWLINE = tlbsCRLF;
     NEWLINE_CHAR = #13#10;
 {$ELSE }
   {$IFDEF MAC}
-      NEWLINE=tlbsCR;
-      NEWLINE_CHAR = #13;
+    NEWLINE = tlbsCR;
+    NEWLINE_CHAR = #13;
   {$ELSE}
-      NEWLINE=tlbsLF;
-      NEWLINE_CHAR = #10;
+    NEWLINE = tlbsLF;
+    NEWLINE_CHAR = #10;
   {$ENDIF}
 {$ENDIF}
 
     TRIM_OPTION = 'TrimOption';
     LEFT_RATIO = 'LeftRatio';
-    RIGHT_RATIO= 'RightRatio';
-    CASE_SENSITIVE='CompareMethod';
+    RIGHT_RATIO = 'RightRatio';
+    CASE_SENSITIVE = 'CompareMethod';
+    CONFIRM_WORKSPACE='ConfirmNewWorkspace';
   end;
 
 var
@@ -229,53 +226,61 @@ begin
 end;
 
 procedure TFormMain.FileNewExecute(Sender: TObject);
-var
-  NewForm: TFormMain;
 begin
-  NewForm:=TFormMain.Create(Application);
-  NewForm.Show;
+  if AppOptions.ConfirmNewWorkspace then
+  begin
+    if MessageDlg('Are You Sure?', 'Do you wish to start a new workspace',
+      mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+    begin
+      Reset;
+    end;
+  end else begin;
+    Reset;
+  end;
 end;
 
 procedure TFormMain.FindDialogFind(Sender: TObject);
 var
   Ctrl: TCustomEdit;
 begin
-  if not (Self.ActiveControl is TCustomEdit) then exit;
-  Ctrl:=TCustomEdit(Self.ActiveControl);
+  if not (Self.ActiveControl is TCustomEdit) then
+    exit;
+  Ctrl := TCustomEdit(Self.ActiveControl);
   with Sender as TFindDialog do
   begin
-    FFoundPos:=PosEx(FindText, Ctrl.Text, FFoundPos+1);
+    FFoundPos := PosEx(FindText, Ctrl.Text, FFoundPos + 1);
     if FFoundPos > 0 then
     begin
-      Ctrl.SelStart:=FFoundPos - 1;
-      Ctrl.SelLength:=FindText.Length;
+      Ctrl.SelStart := FFoundPos - 1;
+      Ctrl.SelLength := FindText.Length;
       Ctrl.SetFocus;
-    end else
-      Beep();
+    end
+    else
+      Beep;
   end;
 end;
 
 procedure TFormMain.FormatFontExecute(Sender: TObject);
 begin
-  FontDialogEditors.Font:=MemoLeft.Font;
+  FontDialogEditors.Font := MemoLeft.Font;
   if FontDialogEditors.Execute then
   begin
-    MemoLeft.Font:=FontDialogEditors.Font;
-    MemoRight.Font:=FontDialogEditors.Font;
-    MemoResults.Font:=FontDialogEditors.Font;
-    AppOptions.EditorFont:=FontDialogEditors.Font;
+    MemoLeft.Font := FontDialogEditors.Font;
+    MemoRight.Font := FontDialogEditors.Font;
+    MemoResults.Font := FontDialogEditors.Font;
+    AppOptions.EditorFont := FontDialogEditors.Font;
   end;
 end;
 
 procedure TFormMain.FormatWordWrapExecute(Sender: TObject);
 begin
-  MemoLeft.WordWrap:=TAction(Sender).Checked;
-  MemoRight.WordWrap:=MemoLeft.WordWrap;
+  MemoLeft.WordWrap := TAction(Sender).Checked;
+  MemoRight.WordWrap := MemoLeft.WordWrap;
 end;
 
 procedure TFormMain.EditFindExecute(Sender: TObject);
 begin
-  FFoundPos:=0;
+  FFoundPos := 0;
   FindDialog.Execute;
 end;
 
@@ -283,9 +288,10 @@ procedure TFormMain.EditFindNextExecute(Sender: TObject);
 var
   Ctrl: TCustomEdit;
 begin
-  if not (Self.ActiveControl is TCustomEdit) then exit;
-  Ctrl:=TCustomEdit(Self.ActiveControl);
-  FFoundPos:=Ctrl.SelStart;
+  if not (Self.ActiveControl is TCustomEdit) then
+    exit;
+  Ctrl := TCustomEdit(Self.ActiveControl);
+  FFoundPos := Ctrl.SelStart;
 end;
 
 procedure TFormMain.EditPasteExecute(Sender: TObject);
@@ -297,26 +303,27 @@ var
 begin
   if Self.ActiveControl is TCustomEdit then
   begin
-    clipboardText:=Clipboard.AsText;
-    textArr:=clipboardText.Trim.Split(WhitespaceChars);
-    NewString:=TStringList.Create;
-    for i:=0 to Length(textArr) - 1 do
+    clipboardText := Clipboard.AsText;
+    textArr := clipboardText.Trim.Split(WhitespaceChars);
+    NewString := TStringList.Create;
+    for i := 0 to Length(textArr) - 1 do
     begin
-      line:=textArr[i];
-      if AnsiString.IsNullOrWhiteSpace(line) then continue;
+      line := textArr[i];
+      if ansistring.IsNullOrWhiteSpace(line) then
+        continue;
       case AppOptions.TrimOption of
         1:
-        line:=line.TrimRight;
+          line := line.TrimRight;
         2:
-        line.TrimLeft;
+          line.TrimLeft;
         3:
-        line:=line.Trim;
+          line := line.Trim;
       end;
       NewString.Append(line);
     end;
-    NewString.TextLineBreakStyle:=NEWLINE;
-    NewString.LineBreak:=NEWLINE_CHAR;
-    TCustomEdit(Self.ActiveControl).SelText:=NewString.Text.Trim;
+    NewString.TextLineBreakStyle := NEWLINE;
+    NewString.LineBreak := NEWLINE_CHAR;
+    TCustomEdit(Self.ActiveControl).SelText := NewString.Text.Trim;
     FreeAndNil(NewString);
   end;
 end;
@@ -333,27 +340,30 @@ end;
 
 procedure TFormMain.EditClearUpdate(Sender: TObject);
 begin
-  TAction(Sender).Enabled:=(Self.ActiveControl is TCustomEdit);
+  TAction(Sender).Enabled := (Self.ActiveControl is TCustomEdit);
 end;
 
 procedure TFormMain.EditClearExecute(Sender: TObject);
 begin
-  if not (Self.ActiveControl is TCustomEdit) then exit;
+  if not (Self.ActiveControl is TCustomEdit) then
+    exit;
   TCustomEdit(Self.ActiveControl).Clear;
 end;
 
 procedure TFormMain.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
   Reset;
+  CloseAction := caFree;
 end;
 
 procedure TFormMain.FormCreate(Sender: TObject);
 begin
+  AdaptFeatures;
   AdaptMenus;
-  ViewMode:=TShared;
-  ViewShared.Checked:=true;
-  WhitespaceChars[0]:=#13; //cr
-  WhitespaceChars[1]:=#10; //lf
+  ViewMode := TShared;
+  ViewShared.Checked := True;
+  WhitespaceChars[0] := #13; //cr
+  WhitespaceChars[1] := #10; //lf
 end;
 
 procedure TFormMain.FormDestroy(Sender: TObject);
@@ -365,16 +375,17 @@ end;
 
 procedure TFormMain.FormResize(Sender: TObject);
 begin
-  MemoLeft.Width:=Round(Self.Width * LeftRatio) - HALF_SPLITTER_WIDTH;
+  MemoLeft.Width := Round(Self.Width * LeftRatio) - HALF_SPLITTER_WIDTH;
   //MemoRight.Width:=Round(Self.Width * RightRatio) - HALF_SPLITTER_WIDTH;
-  Panel2.Width:=Self.Width - MemoLeft.Width - Round(Self.Width * RightRatio) - HALF_SPLITTER_WIDTH;
+  Panel2.Width := Self.Width - MemoLeft.Width - Round(Self.Width * RightRatio) -
+    HALF_SPLITTER_WIDTH;
 end;
 
 procedure TFormMain.HelpAboutExecute(Sender: TObject);
 var
   FrmAbt: TFormAbout;
 begin
-  FrmAbt:=TFormAbout.Create(Self);
+  FrmAbt := TFormAbout.Create(Self);
   FrmAbt.ShowModal;
 end;
 
@@ -392,10 +403,10 @@ begin
   LeftRatio:=PropStorage.StoredValue[LEFT_RATIO].ToDouble;
   RightRatio:=PropStorage.StoredValue[RIGHT_RATIO].ToDouble;
   AppOptions.CaseSensitive:=PropStorage.StoredValue[CASE_SENSITIVE].ToInteger;
+  AppOptions.ConfirmNewWorkspace:=PropStorage.StoredValue[CONFIRM_WORKSPACE].ToBoolean;
 end;
 
-procedure TFormMain.MemoKeyUp(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
+procedure TFormMain.MemoKeyUp(Sender: TObject; var Key: word; Shift: TShiftState);
 begin
   MemoUpdate(Sender);
 end;
@@ -404,9 +415,10 @@ procedure TFormMain.MemoUpdate(Sender: TObject);
 var
   EditCtrl: TCustomEdit;
 begin
-  if not (Sender is TCustomEdit) then exit;
-  EditCtrl:=TCustomEdit(Sender);
-    StatusBar.Panels[1].Text:='Ln ' + (EditCtrl.CaretPos.y + 1).ToString +
+  if not (Sender is TCustomEdit) then
+    exit;
+  EditCtrl := TCustomEdit(Sender);
+  StatusBar.Panels[1].Text := 'Ln ' + (EditCtrl.CaretPos.y + 1).ToString +
     ' Col ' + (EditCtrl.CaretPos.x + 1).ToString;
 end;
 
@@ -416,40 +428,38 @@ begin
   PropStorage.StoredValue[LEFT_RATIO]:=LeftRatio.ToString;
   PropStorage.StoredValue[RIGHT_RATIO]:=RightRatio.ToString;
   PropStorage.StoredValue[CASE_SENSITIVE]:=AppOptions.CaseSensitive.ToString;
-  //PropStorage.StoredValue[EDITOR_FONT]:=SaveFont;
+  PropStorage.StoredValue[CONFIRM_WORKSPACE]:=AppOptions.ConfirmNewWorkspace.ToString;
 end;
 
-procedure TFormMain.SgResultsAfterSelection(Sender: TObject; aCol,
-  aRow: Integer);
+procedure TFormMain.SgResultsAfterSelection(Sender: TObject; aCol, aRow: integer);
 begin
-  StatusBar.Panels[1].Text:='Ln ' + (aRow + 1).ToString + ' Col ' +
-  (aCol + 1).ToString;
+  StatusBar.Panels[1].Text := 'Ln ' + (aRow + 1).ToString + ' Col ' + (aCol + 1).ToString;
 end;
 
 procedure TFormMain.SplitterMoved(Sender: TObject);
 begin
   if DontMoveSplitter then
   begin
-    DontMoveSplitter:=false;
+    DontMoveSplitter := False;
     FormResize(Sender);
     exit;
   end;
-  LeftRatio:=(MemoLeft.Width / Self.Width);
-  RightRatio:=(MemoRight.Width / Self.Width);
+  LeftRatio := (MemoLeft.Width / Self.Width);
+  RightRatio := (MemoRight.Width / Self.Width);
 end;
 
 procedure TFormMain.ToolsOptionsExecute(Sender: TObject);
 var
   FormOptions: TFormOptions;
 begin
-  FormOptions:=TFormOptions.Create(Self, AppOptions);
-  if FormOptions.ShowModal = mrOK then
+  FormOptions := TFormOptions.Create(Self, AppOptions);
+  if FormOptions.ShowModal = mrOk then
   begin
-    AppOptions:=FormOptions.AppOptions;
+    AppOptions := FormOptions.AppOptions;
     with AppOptions do
     begin
-      MemoLeft.Font:=EditorFont;
-      MemoRight.Font:=EditorFont;
+      MemoLeft.Font := EditorFont;
+      MemoRight.Font := EditorFont;
     end;
   end;
   FreeAndNil(FormOptions);
@@ -464,18 +474,21 @@ procedure TFormMain.ViewModeExecute(Sender: TObject);
 var
   NewLabel: string;
 begin
-  if (Sender = ViewShared) then ViewMode:=TShared;
-  if (Sender = ViewLeft) then ViewMode:=TLeft;
-  if (Sender = ViewRight) then ViewMode:=TRight;
+  if (Sender = ViewShared) then
+    ViewMode := TShared;
+  if (Sender = ViewLeft) then
+    ViewMode := TLeft;
+  if (Sender = ViewRight) then
+    ViewMode := TRight;
   case ViewMode of
     TLeft:
-      NewLabel:=LEFT_VIEW;
+      NewLabel := LEFT_VIEW;
     TRight:
-      NewLabel:=RIGHT_VIEW;
+      NewLabel := RIGHT_VIEW;
     TShared:
-      NewLabel:=SHARED_VIEW;
+      NewLabel := SHARED_VIEW;
   end;
-  GridLabel.Caption:=NewLabel;
+  GridLabel.Caption := NewLabel;
   RefreshGrid(Sender);
 end;
 
@@ -488,31 +501,34 @@ var
 begin
   with TStringList do
   begin
-    NewList:=Create;
-    LeftList:=Create;
-    RightList:=Create;
+    NewList := Create;
+    LeftList := Create;
+    RightList := Create;
   end;
-  NewList.Sorted:=true;
+  NewList.Sorted := True;
   if ViewDuplicates.Checked then
-    NewList.Duplicates:=dupIgnore
+    NewList.Duplicates := dupIgnore
   else
-    NewList.Duplicates:=dupAccept;
+    NewList.Duplicates := dupAccept;
   LeftList.AddStrings(MemoLeft.Lines);
   RightList.AddStrings(MemoRight.Lines);
   if AppOptions.CaseSensitive = 1 then
   begin
-    LeftList.CaseSensitive:=false;
-    RightList.CaseSensitive:=false;
-  end else begin
-    LeftList.CaseSensitive:=true;
-    RightList.CaseSensitive:=true;
+    LeftList.CaseSensitive := False;
+    RightList.CaseSensitive := False;
+  end
+  else
+  begin
+    LeftList.CaseSensitive := True;
+    RightList.CaseSensitive := True;
   end;
   case ViewMode of
     TLeft:
     begin
       for s in LeftList do
       begin
-        if RightList.IndexOf(s.Trim) > -1 then continue;
+        if RightList.IndexOf(s.Trim) > -1 then
+          continue;
         NewList.Append(s.Trim);
       end;
     end;
@@ -520,7 +536,8 @@ begin
     begin
       for s in RightList do
       begin
-        if LeftList.IndexOf(s.Trim) > -1 then continue;
+        if LeftList.IndexOf(s.Trim) > -1 then
+          continue;
         NewList.Append(s.Trim);
       end;
     end;
@@ -534,7 +551,7 @@ begin
     end;
   end;
   MemoResults.Clear;
-  for i:=0 to NewList.Count - 1 do
+  for i := 0 to NewList.Count - 1 do
   begin
     //SgResults.InsertRowWithValues(i,[NewList[i]]);
     MemoResults.Lines.Insert(i, NewList[i]);
@@ -547,31 +564,31 @@ end;
 
 procedure TFormMain.ViewResetExecute(Sender: TObject);
 begin
-  LeftRatio:=0.33;
-  RightRatio:=0.33;
+  LeftRatio := 0.33;
+  RightRatio := 0.33;
   FormResize(Sender);
 end;
 
 procedure TFormMain.ViewStatusBarExecute(Sender: TObject);
 begin
-  StatusBar.Visible:=TAction(Sender).Checked;
+  StatusBar.Visible := TAction(Sender).Checked;
 end;
 
 procedure TFormMain.ViewToolbarExecute(Sender: TObject);
 begin
-  ToolBar.Visible:=TAction(Sender).Checked;
+  ToolBar.Visible := TAction(Sender).Checked;
 end;
 
 procedure TFormMain.UpdateStatusBar(l, r, rs: integer);
 var
   EditCtrl: TCustomEdit;
 begin
-  StatusBar.Panels[2].Text:='Left: ' + l.ToString;
-  StatusBar.Panels[3].Text:='Right: ' + r.ToString;
-  StatusBar.Panels[4].Text:='Results: ' + rs.ToString;
+  StatusBar.Panels[2].Text := 'Left: ' + l.ToString;
+  StatusBar.Panels[3].Text := 'Right: ' + r.ToString;
+  StatusBar.Panels[4].Text := 'Results: ' + rs.ToString;
   if Self.ActiveControl is TCustomEdit then
   begin
-    MemoUpdate(Self.ActiveControl)
+    MemoUpdate(Self.ActiveControl);
   end;
 end;
 
@@ -583,4 +600,3 @@ begin
 end;
 
 end.
-

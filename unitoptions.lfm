@@ -1,29 +1,28 @@
 object FormOptions: TFormOptions
-  Left = 641
-  Height = 1038
-  Top = 334
-  Width = 710
+  Left = 1265
+  Height = 524
+  Top = 147
+  Width = 355
   Caption = 'Options'
   ChildSizing.LeftRightSpacing = 10
   ChildSizing.TopBottomSpacing = 10
   ChildSizing.HorizontalSpacing = 10
   ChildSizing.VerticalSpacing = 10
-  ClientHeight = 1038
-  ClientWidth = 710
+  ClientHeight = 524
+  ClientWidth = 355
   Color = clWindow
-  DesignTimePPI = 192
   OnClose = FormClose
   OnShow = FormCreate
-  LCLVersion = '2.0.10.0'
+  LCLVersion = '2.1.0.0'
   object DividerBevelBehavior: TDividerBevel
     AnchorSideLeft.Control = Owner
     AnchorSideTop.Control = Owner
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
     Left = 10
-    Height = 32
+    Height = 15
     Top = 10
-    Width = 690
+    Width = 335
     Caption = 'Application Behavior'
     Anchors = [akTop, akLeft, akRight]
     Font.Style = [fsBold]
@@ -34,10 +33,10 @@ object FormOptions: TFormOptions
     AnchorSideTop.Control = DividerBevelBehavior
     AnchorSideTop.Side = asrBottom
     Left = 10
-    Height = 231
+    Height = 146
     Hint = 'When pasting into left/right, should we trim whitespace?'
-    Top = 52
-    Width = 201
+    Top = 35
+    Width = 114
     AutoFill = True
     AutoSize = True
     Caption = '&Trim Options'
@@ -51,8 +50,8 @@ object FormOptions: TFormOptions
     ChildSizing.ShrinkVertical = crsScaleChilds
     ChildSizing.Layout = cclLeftToRightThenTopToBottom
     ChildSizing.ControlsPerLine = 1
-    ClientHeight = 194
-    ClientWidth = 197
+    ClientHeight = 126
+    ClientWidth = 110
     Items.Strings = (
       '&None'
       '&Trailing Only'
@@ -65,11 +64,10 @@ object FormOptions: TFormOptions
     TabOrder = 0
   end
   object ButtonPanelOptions: TButtonPanel
-    Left = 12
-    Height = 54
-    Top = 972
-    Width = 686
-    BorderSpacing.Around = 12
+    Left = 10
+    Height = 33
+    Top = 481
+    Width = 335
     OKButton.Name = 'OKButton'
     OKButton.DefaultCaption = True
     HelpButton.Name = 'HelpButton'
@@ -89,17 +87,17 @@ object FormOptions: TFormOptions
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = ButtonPanelOptions
     Left = 10
-    Height = 488
-    Top = 472
-    Width = 690
+    Height = 140
+    Top = 331
+    Width = 335
     Anchors = [akTop, akLeft, akRight, akBottom]
     Caption = 'Editor &Font'
     ChildSizing.LeftRightSpacing = 5
     ChildSizing.TopBottomSpacing = 5
     ChildSizing.HorizontalSpacing = 5
     ChildSizing.VerticalSpacing = 5
-    ClientHeight = 451
-    ClientWidth = 686
+    ClientHeight = 120
+    ClientWidth = 331
     ParentFont = False
     TabOrder = 2
     object PanelSample: TPanel
@@ -109,24 +107,24 @@ object FormOptions: TFormOptions
       AnchorSideRight.Side = asrBottom
       AnchorSideBottom.Control = BitBtnFontEdit
       Left = 5
-      Height = 394
+      Height = 80
       Top = 5
-      Width = 676
+      Width = 321
       Anchors = [akTop, akLeft, akRight, akBottom]
       BevelOuter = bvLowered
       BorderWidth = 1
       BorderStyle = bsSingle
       ChildSizing.LeftRightSpacing = 2
       ChildSizing.TopBottomSpacing = 2
-      ClientHeight = 390
-      ClientWidth = 672
+      ClientHeight = 76
+      ClientWidth = 317
       ParentFont = False
       TabOrder = 0
       object StaticTextSample: TStaticText
         Left = 4
-        Height = 382
+        Height = 68
         Top = 4
-        Width = 664
+        Width = 309
         Align = alClient
         AutoSize = True
         Caption = 'The quick brown fox jumped over the lazy dog.'
@@ -139,10 +137,10 @@ object FormOptions: TFormOptions
       AnchorSideRight.Side = asrBottom
       AnchorSideBottom.Control = GroupBoxFont
       AnchorSideBottom.Side = asrBottom
-      Left = 573
-      Height = 42
-      Top = 404
-      Width = 108
+      Left = 259
+      Height = 25
+      Top = 90
+      Width = 67
       Anchors = [akRight, akBottom]
       AutoSize = True
       Caption = '&Change'
@@ -154,10 +152,10 @@ object FormOptions: TFormOptions
       AnchorSideTop.Control = BitBtnFontEdit
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Control = BitBtnFontEdit
-      Left = 484
-      Height = 42
-      Top = 404
-      Width = 84
+      Left = 200
+      Height = 25
+      Top = 90
+      Width = 54
       Anchors = [akTop, akRight]
       AutoSize = True
       Caption = 'Reset'
@@ -168,14 +166,14 @@ object FormOptions: TFormOptions
   end
   object DividerBevelUser: TDividerBevel
     AnchorSideLeft.Control = Owner
-    AnchorSideTop.Control = RadioGroupCase
+    AnchorSideTop.Control = CheckBoxConfirmWorkspace
     AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
     Left = 10
-    Height = 32
-    Top = 430
-    Width = 690
+    Height = 15
+    Top = 306
+    Width = 335
     Caption = 'User Preferences'
     Anchors = [akTop, akLeft, akRight]
     Font.Style = [fsBold]
@@ -189,11 +187,11 @@ object FormOptions: TFormOptions
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = RadioGroupTrim
     AnchorSideBottom.Side = asrBottom
-    Left = 221
-    Height = 231
+    Left = 134
+    Height = 146
     Hint = 'Which line endings should be used when trimming or copying?'
-    Top = 52
-    Width = 479
+    Top = 35
+    Width = 211
     Anchors = [akTop, akLeft, akRight, akBottom]
     AutoFill = True
     Caption = 'Line Endings'
@@ -207,8 +205,8 @@ object FormOptions: TFormOptions
     ChildSizing.ShrinkVertical = crsScaleChilds
     ChildSizing.Layout = cclLeftToRightThenTopToBottom
     ChildSizing.ControlsPerLine = 1
-    ClientHeight = 194
-    ClientWidth = 475
+    ClientHeight = 126
+    ClientWidth = 207
     Items.Strings = (
       'System Default'
       'Windows Style (CRLF)'
@@ -224,10 +222,10 @@ object FormOptions: TFormOptions
     AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
-    Left = 221
-    Height = 127
-    Top = 293
-    Width = 479
+    Left = 134
+    Height = 76
+    Top = 191
+    Width = 211
     Anchors = [akTop, akLeft, akRight]
     AutoFill = True
     AutoSize = True
@@ -242,8 +240,8 @@ object FormOptions: TFormOptions
     ChildSizing.ShrinkVertical = crsScaleChilds
     ChildSizing.Layout = cclLeftToRightThenTopToBottom
     ChildSizing.ControlsPerLine = 1
-    ClientHeight = 90
-    ClientWidth = 475
+    ClientHeight = 56
+    ClientWidth = 207
     Items.Strings = (
       'Case Sensitive'
       'Ignore Case'
@@ -251,11 +249,25 @@ object FormOptions: TFormOptions
     ParentFont = False
     TabOrder = 4
   end
+  object CheckBoxConfirmWorkspace: TCheckBox
+    AnchorSideLeft.Control = RadioGroupCase
+    AnchorSideTop.Control = RadioGroupCase
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 134
+    Height = 19
+    Top = 277
+    Width = 211
+    Anchors = [akTop, akLeft, akRight]
+    Caption = 'Confirm creating new workspace'
+    TabOrder = 5
+  end
   object FontDialogEditor: TFontDialog
     MinFontSize = 0
     MaxFontSize = 0
     Options = [fdNoStyleSel]
-    Left = 592
-    Top = 32
+    Left = 296
+    Top = 16
   end
 end
