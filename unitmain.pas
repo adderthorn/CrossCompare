@@ -30,8 +30,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ActnList, Menus,
   StdCtrls, ComCtrls, StdActns, ExtCtrls, Clipbrd, IniPropStorage, lclintf,
-  IDEWindowIntf, UnitAbout, UnitOptions, PlatformHelper, StrUtils
-  {$IFDEF LCLCocoa}, CocoaInt{$ENDIF};
+  IDEWindowIntf, UnitAbout, UnitOptions, PlatformHelper, StrUtils;
 
 type
   { TViewMode }

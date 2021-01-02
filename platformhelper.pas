@@ -5,7 +5,8 @@ unit PlatformHelper;
 interface
 
 uses
-  Classes, SysUtils, LCLType, Controls, Menus;
+  Classes, SysUtils, LCLType, Controls, Menus
+  {$IFDEF LCLCocoa}, CocoaInt{$ENDIF};
 
 procedure AdaptMenus;
 procedure AdaptFeatures;
@@ -18,7 +19,7 @@ uses
 procedure AdaptFeatures;
 begin
   {$IFDEF LCLCocoa}
-  CocoaInt.CocoaIconUse=false;
+  CocoaInt.CocoaIconUse:=true;
   {$ENDIF}
 end;
 
