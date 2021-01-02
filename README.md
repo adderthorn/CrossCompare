@@ -7,8 +7,6 @@ A simple application for comparing two lists of strings to produce a list with u
 
 CrossCompare is licensed under the terms of the GNU General Public License v3.0. You may view the most [up-to-date terms of the license](https://github.com/nhwood/CrossCompare/blob/master/LICENSE) at any time.
 
-Some icons used in the application are curtesy of [FatCow](https://www.fatcow.com/free-icons).
-
 # Features
 
 * Written in [Free Pascal](https://www.freepascal.org/) to be cross-platform (Windows, macOS, and Linux)
