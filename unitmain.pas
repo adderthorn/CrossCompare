@@ -347,6 +347,7 @@ begin
   if not (Self.ActiveControl is TCustomEdit) then
     exit;
   TCustomEdit(Self.ActiveControl).Clear;
+  RefreshGrid(sender);
 end;
 
 procedure TFormMain.FormClose(Sender: TObject; var CloseAction: TCloseAction);
