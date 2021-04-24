@@ -1,7 +1,7 @@
 object FormOptions: TFormOptions
-  Left = 1265
+  Left = 548
   Height = 524
-  Top = 147
+  Top = 377
   Width = 355
   Caption = 'Options'
   ChildSizing.LeftRightSpacing = 10
@@ -13,6 +13,7 @@ object FormOptions: TFormOptions
   Color = clWindow
   OnClose = FormClose
   OnShow = FormCreate
+  Position = poDefault
   LCLVersion = '2.1.0.0'
   object DividerBevelBehavior: TDividerBevel
     AnchorSideLeft.Control = Owner
@@ -65,8 +66,8 @@ object FormOptions: TFormOptions
   end
   object ButtonPanelOptions: TButtonPanel
     Left = 10
-    Height = 33
-    Top = 481
+    Height = 34
+    Top = 480
     Width = 335
     OKButton.Name = 'OKButton'
     OKButton.DefaultCaption = True
@@ -87,7 +88,7 @@ object FormOptions: TFormOptions
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = ButtonPanelOptions
     Left = 10
-    Height = 140
+    Height = 139
     Top = 331
     Width = 335
     Anchors = [akTop, akLeft, akRight, akBottom]
@@ -96,7 +97,7 @@ object FormOptions: TFormOptions
     ChildSizing.TopBottomSpacing = 5
     ChildSizing.HorizontalSpacing = 5
     ChildSizing.VerticalSpacing = 5
-    ClientHeight = 120
+    ClientHeight = 119
     ClientWidth = 331
     ParentFont = False
     TabOrder = 2
@@ -107,7 +108,7 @@ object FormOptions: TFormOptions
       AnchorSideRight.Side = asrBottom
       AnchorSideBottom.Control = BitBtnFontEdit
       Left = 5
-      Height = 80
+      Height = 79
       Top = 5
       Width = 321
       Anchors = [akTop, akLeft, akRight, akBottom]
@@ -116,13 +117,13 @@ object FormOptions: TFormOptions
       BorderStyle = bsSingle
       ChildSizing.LeftRightSpacing = 2
       ChildSizing.TopBottomSpacing = 2
-      ClientHeight = 76
+      ClientHeight = 75
       ClientWidth = 317
       ParentFont = False
       TabOrder = 0
       object StaticTextSample: TStaticText
         Left = 4
-        Height = 68
+        Height = 67
         Top = 4
         Width = 309
         Align = alClient
@@ -139,7 +140,7 @@ object FormOptions: TFormOptions
       AnchorSideBottom.Side = asrBottom
       Left = 259
       Height = 25
-      Top = 90
+      Top = 89
       Width = 67
       Anchors = [akRight, akBottom]
       AutoSize = True
@@ -154,7 +155,7 @@ object FormOptions: TFormOptions
       AnchorSideRight.Control = BitBtnFontEdit
       Left = 200
       Height = 25
-      Top = 90
+      Top = 89
       Width = 54
       Anchors = [akTop, akRight]
       AutoSize = True

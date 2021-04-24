@@ -11915,7 +11915,7 @@ object FormAbout: TFormAbout
       Width = 318
       Align = alClient
       Lines.Strings = (
-        '© Copyright 2019 Noah Wood'
+        '© Copyright 2019-2021 Noah Wood'
         ''
         '                    GNU GENERAL PUBLIC LICENSE'
         '                       Version 3, 29 June 2007'
