@@ -18,13 +18,11 @@ CrossCompare is licensed under the terms of the GNU General Public License v3.0.
 * Not reliant on any libraries other than the LCL provide with Free Pascal/Lazarus
 * Basic customization abilities (Font, panel width, toolbar/status bar visibility)
 
-# How to Download
+# Downloading
 
-**NOTE:** Precompiled binaries are coming, for now you must compile from source. Don't worry, it's very easy!
+You can download CrossCompare from [the releases page](https://github.com/adderthorn/CrossCompare/releases).
 
-## Windows
-
-Tested on Windows 10, Windows 7, and Windows XP (32-bit).
+**NOTE:** Precompiled binaries are coming for more platforms. Please be patient!
 
 # How to Build from Source
 
