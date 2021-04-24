@@ -38,6 +38,7 @@ type
   TAppOptions = record
     TrimOption, LineEnding, CaseSensitive: integer;
     EditorFont: TFont;
+    ConfirmNewWorkspace: boolean;
   end;
 
   { TFormOptions }
@@ -46,7 +47,8 @@ type
     ApplicationProperties1: TApplicationProperties;
     BitBtnFontEdit: TBitBtn;
     ButtonResetFont: TButton;
-    ButtonPanel1: TButtonPanel;
+    ButtonPanelOptions: TButtonPanel;
+    CheckBoxConfirmWorkspace: TCheckBox;
     DividerBevelUser: TDividerBevel;
     DividerBevelBehavior: TDividerBevel;
     FontDialogEditor: TFontDialog;
@@ -87,6 +89,7 @@ begin
     RadioGroupLineEndings.ItemIndex:=LineEnding;
     StaticTextSample.Font:=EditorFont;
     RadioGroupCase.ItemIndex:=CaseSensitive;
+    CheckBoxConfirmWorkspace.Checked:=ConfirmNewWorkspace;
   end;
 end;
 
@@ -99,6 +102,7 @@ begin
     EditorFont:=StaticTextSample.Font;
     LineEnding:=RadioGroupLineEndings.ItemIndex;
     CaseSensitive:=RadioGroupCase.ItemIndex;
+    ConfirmNewWorkspace:=CheckBoxConfirmWorkspace.Checked;
   end;
 end;
 

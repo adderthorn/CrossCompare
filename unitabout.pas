@@ -36,7 +36,7 @@ type
   { TFormAbout }
 
   TFormAbout = class(TForm)
-    BtnOK: TBitBtn;
+    BtnOK: TButton;
     Image1: TImage;
     Label1: TLabel;
     Label2: TLabel;
