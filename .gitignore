@@ -25,6 +25,9 @@
 backup/
 *.bak
 lib/
+bin/
 
 # Application bundle for Mac OS
 *.app/
+bin
+.DS_Store

@@ -1,19 +1,19 @@
 object FormOptions: TFormOptions
-  Left = 641
-  Height = 519
-  Top = 334
+  Left = 1265
+  Height = 524
+  Top = 147
   Width = 355
   Caption = 'Options'
   ChildSizing.LeftRightSpacing = 10
   ChildSizing.TopBottomSpacing = 10
   ChildSizing.HorizontalSpacing = 10
   ChildSizing.VerticalSpacing = 10
-  ClientHeight = 519
+  ClientHeight = 524
   ClientWidth = 355
   Color = clWindow
   OnClose = FormClose
   OnShow = FormCreate
-  LCLVersion = '2.0.2.0'
+  LCLVersion = '2.1.0.0'
   object DividerBevelBehavior: TDividerBevel
     AnchorSideLeft.Control = Owner
     AnchorSideTop.Control = Owner
@@ -58,14 +58,15 @@ object FormOptions: TFormOptions
       '&Leading Only'
       '&Both'
     )
+    ParentFont = False
     ParentShowHint = False
     ShowHint = True
     TabOrder = 0
   end
-  object ButtonPanel1: TButtonPanel
+  object ButtonPanelOptions: TButtonPanel
     Left = 10
-    Height = 34
-    Top = 475
+    Height = 33
+    Top = 481
     Width = 335
     OKButton.Name = 'OKButton'
     OKButton.DefaultCaption = True
@@ -76,7 +77,7 @@ object FormOptions: TFormOptions
     CancelButton.Name = 'CancelButton'
     CancelButton.DefaultCaption = True
     TabOrder = 1
-    ShowButtons = [pbOK, pbCancel, pbHelp]
+    ShowButtons = [pbOK, pbCancel]
   end
   object GroupBoxFont: TGroupBox
     AnchorSideLeft.Control = Owner
@@ -84,10 +85,10 @@ object FormOptions: TFormOptions
     AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
-    AnchorSideBottom.Control = ButtonPanel1
+    AnchorSideBottom.Control = ButtonPanelOptions
     Left = 10
-    Height = 163
-    Top = 302
+    Height = 140
+    Top = 331
     Width = 335
     Anchors = [akTop, akLeft, akRight, akBottom]
     Caption = 'Editor &Font'
@@ -95,8 +96,9 @@ object FormOptions: TFormOptions
     ChildSizing.TopBottomSpacing = 5
     ChildSizing.HorizontalSpacing = 5
     ChildSizing.VerticalSpacing = 5
-    ClientHeight = 143
+    ClientHeight = 120
     ClientWidth = 331
+    ParentFont = False
     TabOrder = 2
     object PanelSample: TPanel
       AnchorSideLeft.Control = GroupBoxFont
@@ -105,7 +107,7 @@ object FormOptions: TFormOptions
       AnchorSideRight.Side = asrBottom
       AnchorSideBottom.Control = BitBtnFontEdit
       Left = 5
-      Height = 103
+      Height = 80
       Top = 5
       Width = 321
       Anchors = [akTop, akLeft, akRight, akBottom]
@@ -114,17 +116,19 @@ object FormOptions: TFormOptions
       BorderStyle = bsSingle
       ChildSizing.LeftRightSpacing = 2
       ChildSizing.TopBottomSpacing = 2
-      ClientHeight = 99
+      ClientHeight = 76
       ClientWidth = 317
+      ParentFont = False
       TabOrder = 0
       object StaticTextSample: TStaticText
         Left = 4
-        Height = 91
+        Height = 68
         Top = 4
         Width = 309
         Align = alClient
         AutoSize = True
         Caption = 'The quick brown fox jumped over the lazy dog.'
+        ParentFont = False
         TabOrder = 0
       end
     end
@@ -135,12 +139,13 @@ object FormOptions: TFormOptions
       AnchorSideBottom.Side = asrBottom
       Left = 259
       Height = 25
-      Top = 113
+      Top = 90
       Width = 67
       Anchors = [akRight, akBottom]
       AutoSize = True
       Caption = '&Change'
       OnClick = BitBtnFontEditClick
+      ParentFont = False
       TabOrder = 1
     end
     object ButtonResetFont: TButton
@@ -149,24 +154,25 @@ object FormOptions: TFormOptions
       AnchorSideRight.Control = BitBtnFontEdit
       Left = 200
       Height = 25
-      Top = 113
+      Top = 90
       Width = 54
       Anchors = [akTop, akRight]
       AutoSize = True
       Caption = 'Reset'
       OnClick = ButtonResetFontClick
+      ParentFont = False
       TabOrder = 2
     end
   end
   object DividerBevelUser: TDividerBevel
     AnchorSideLeft.Control = Owner
-    AnchorSideTop.Control = RadioGroupCase
+    AnchorSideTop.Control = CheckBoxConfirmWorkspace
     AnchorSideTop.Side = asrBottom
     AnchorSideRight.Control = Owner
     AnchorSideRight.Side = asrBottom
     Left = 10
     Height = 15
-    Top = 277
+    Top = 306
     Width = 335
     Caption = 'User Preferences'
     Anchors = [akTop, akLeft, akRight]
@@ -207,6 +213,7 @@ object FormOptions: TFormOptions
       'Unix Style (LF)'
       '(Classic) MacOS Style (CR)'
     )
+    ParentFont = False
     TabOrder = 3
   end
   object RadioGroupCase: TRadioGroup
@@ -239,13 +246,28 @@ object FormOptions: TFormOptions
       'Case Sensitive'
       'Ignore Case'
     )
+    ParentFont = False
     TabOrder = 4
+  end
+  object CheckBoxConfirmWorkspace: TCheckBox
+    AnchorSideLeft.Control = RadioGroupCase
+    AnchorSideTop.Control = RadioGroupCase
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 134
+    Height = 19
+    Top = 277
+    Width = 211
+    Anchors = [akTop, akLeft, akRight]
+    Caption = 'Confirm creating new workspace'
+    TabOrder = 5
   end
   object FontDialogEditor: TFontDialog
     MinFontSize = 0
     MaxFontSize = 0
     Options = [fdNoStyleSel]
-    left = 296
-    top = 16
+    Left = 296
+    Top = 16
   end
 end
